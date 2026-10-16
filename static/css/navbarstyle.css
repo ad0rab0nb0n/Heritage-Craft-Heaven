@@ -1,0 +1,214 @@
+
+* { font-family: 'Roboto Slab', serif; }
+body {
+    font-family: 'Roboto Slab', serif;
+    margin: 0;
+    padding: 0;
+    background-color: #e0e0e0;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+.upper-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #bdbdbd;
+    padding: 15px 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+.upper-nav .hamburger {
+    cursor: pointer;
+    margin-right: 20px; /* Space between the hamburger icon and the title */
+    font-size: 24px; /* Size of the hamburger icon */
+    color: #424242;
+}
+.upper-nav .logo {
+    font-size: 22px;
+    font-weight: bold;
+    color: #424242;
+    flex-grow: 1; /* Ensures that the logo takes up available space */
+}
+.upper-nav .search-cart {
+    display: flex;
+    align-items: center;
+}
+.upper-nav .search-cart select, .upper-nav .search-cart input[type="text"], .upper-nav .search-cart .cart {
+    margin-right: 10px;
+    padding: 5px;
+}
+.upper-nav .search-cart select {
+    border: 1px solid #757575;
+    border-radius: 4px;
+    background-color: #bdbdbd;
+    color: #424242;
+}
+.upper-nav .search-cart input[type="text"] {
+    border: 1px solid #757575;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #424242;
+}
+.upper-nav .search-cart .cart {
+    font-size: 24px;
+    cursor: pointer;
+    color: #424242;
+}
+.lower-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #9e9e9e;
+    padding: 10px 0;
+    border-top: 1px solid #757575;
+    position: fixed;
+    top: 68px; /* Adjust based on the height of the upper-nav */
+    width: 100%;
+    z-index: 999;
+    height: 50px;
+}
+.lower-nav a {
+    margin: 0 20px;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #424242;
+    font-weight: bold;
+    position: relative;
+    transition: color 0.3s, background-color 0.3s;
+    border-radius: 5px;
+}
+.lower-nav a:hover {
+    color: #fff;
+    background-color: #616161;
+}
+.lower-nav .button {
+    position: absolute;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #616161;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+}
+.lower-nav .button:hover {
+    background-color: #424242;
+}
+.lower-nav .dropdown {
+    position: relative;
+    display: inline-block;
+}
+.lower-nav .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #bdbdbd;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+    transition: all 0.3s ease;
+    max-height: 200px;
+    width: 160px;
+    overflow-y: auto;
+}
+.lower-nav .dropdown:hover .dropdown-content {
+    display: block;
+}
+.lower-nav .dropdown-content label {
+    display: block;
+    margin: 8px 0;
+    color: #424242;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.lower-nav .dropdown-content input[type="checkbox"] {
+    margin-right: 8px;
+}
+.lower-nav .dropdown-content label:hover {
+    background-color: #9e9e9e;
+    color: #212121;
+}
+.check-icon {
+    margin-left: 8px;
+    font-size: 14px;
+    color: #424242;
+    transition: color 0.3s;
+}
+.lower-nav .dropdown-content label:hover .check-icon {
+    color: #212121;
+}
+
+.sidebar {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: -250px;
+    background-color: #bdbdbd;
+    transition: 0.3s;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+    overflow-y: auto;
+    padding-top: 60px;
+    z-index: 1001;
+}
+.sidebar a {
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #424242;
+    display: block;
+    transition: 0.3s;
+    border-bottom: 1px solid #757575;
+}
+.sidebar a:hover {
+    color: #fff;
+    background-color: #616161;
+}
+.sidebar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 36px;
+    margin-left: 50px;
+    cursor: pointer;
+}
+.sidebar .category {
+    padding: 10px 15px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #424242;
+    border-bottom: 1px solid #757575;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.sidebar .category:hover {
+    background-color: #9e9e9e;
+}
+.sidebar .category .material-icons {
+    font-size: 24px;
+    color: #424242;
+}
+.sidebar .subcategory {
+    display: none;
+    padding-left: 20px;
+    background-color: #d6d6d6;
+}
+.sidebar .subcategory a {
+    font-size: 16px;
+    color: #424242;
+    border-bottom: 1px solid #9e9e9e;
+}
+.sidebar .subcategory a:hover {
+    background-color: #bdbdbd;
+}
+.sidebar .subcategory a:onclick {
+    background-color: #bdbdbd;
+}

@@ -1,0 +1,258 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #7d7d7d;
+            color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .profile-container {
+            background-color: #3c3c3c;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            width: 500px;
+            text-align: center;
+            position: relative;
+        }
+
+        .profile-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .back-arrow {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+        }
+
+        .back-arrow a {
+            color: #f0f0f0;
+            font-size: 24px;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .back-arrow a:hover {
+            color: #868686;
+            transform: translateX(-5px);
+        }
+
+        .profile-pic-container {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin-bottom: 15px;
+        }
+
+        #profile-pic {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 2px solid #f0f0f0;
+            object-fit: cover;
+        }
+
+        #upload-photo {
+            display: none;
+        }
+
+        #upload-label {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background-color: #7b8187;
+            color: white;
+            padding:10px 10px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;border-radius: 30%;
+        }
+
+        #upload-label i {
+            margin-right: 5px;
+        }
+
+        #upload-label:hover {
+            background-color: #0056b3;
+        }
+
+        h2 {
+            margin: 0;
+            font-size: 24px;
+            color: #ffffff;
+        }
+
+        .profile-details {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #4d4d4d;
+        }
+
+        .detail-label {
+            font-weight: bold;
+            color: #d0d0d0;
+        }
+
+        .detail-value {
+            color: #ffffff;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #7d848d;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .wishlist-section {
+            margin-top: 20px;
+        }
+
+        .wishlist-section h3 {
+            margin-bottom: 10px;
+            color: #d0d0d0;
+        }
+
+        .wishlist-section ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .wishlist-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .wishlist-section ul li a {
+            text-decoration: none;
+            color: #007BFF;
+            transition: color 0.3s ease;
+        }
+
+        .wishlist-section ul li a:hover {
+            color: #0056b3;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <div class="profile-header">
+            <div class="back-arrow">
+                <a href="{% url 'home' %}">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+            </div>
+            <div class="profile-pic-container">
+                <img src="D:\heritage craft heaven\defaultprofile.jpg" alt="Profile Picture" id="profile-pic">
+                <input type="file" id="upload-photo" accept="image/*" onchange="previewPhoto()">
+                <label for="upload-photo" id="upload-label">
+                    <i class="fas fa-camera"></i>
+                </label>
+            </div>
+            <h2 id="user-name">Thin Thiri Bon</h2>
+        </div>
+        <div class="profile-details">
+            <div class="detail-item">
+                <span class="detail-label">Email:</span>
+                <span class="detail-value" id="email">bonbon@gmail.com</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Address:</span>
+                <span class="detail-value" id="address">73 st, 107 MIIT Mandalay</span>
+            </div>
+            <button id="edit-btn" onclick="toggleEdit()">Edit Profile</button>
+            <button id="save-btn" onclick="saveProfile()" style="display: none;">Save Profile</button>
+        </div>
+        <hr>
+        <div class="wishlist-section">
+            <h3>Your Wishlist   <i class="fas fa-heart"></i></h3>
+            <ul id="wishlist">
+                <li><a href="wishlist.html">View Wishlist</a></li>
+            </ul>
+        </div>
+    </div>
+<script>
+    function previewPhoto() {
+        const file = document.getElementById('upload-photo').files[0];
+        const reader = new FileReader();
+
+        reader.onloadend = function() {
+            document.getElementById('profile-pic').src = reader.result;
+        };
+
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    }
+
+    function toggleEdit() {
+        const name = document.getElementById('user-name');
+        const email = document.getElementById('email');
+        const address = document.getElementById('address');
+
+        name.contentEditable = "true";
+        email.contentEditable = "true";
+        address.contentEditable = "true";
+
+        name.style.borderBottom = "1px solid #d0d0d0";
+        email.style.borderBottom = "1px solid #d0d0d0";
+        address.style.borderBottom = "1px solid #d0d0d0";
+
+        document.getElementById('edit-btn').style.display = 'none';
+        document.getElementById('save-btn').style.display = 'inline-block';
+    }
+
+    function saveProfile() {
+        const name = document.getElementById('user-name');
+        const email = document.getElementById('email');
+        const address = document.getElementById('address');
+
+        name.contentEditable = "false";
+        email.contentEditable = "false";
+        address.contentEditable = "false";
+
+        name.style.borderBottom = "none";
+        email.style.borderBottom = "none";
+        address.style.borderBottom = "none";
+
+        alert('Profile saved successfully!');
+
+        document.getElementById('edit-btn').style.display = 'inline-block';
+        document.getElementById('save-btn').style.display = 'none';
+    }
+
+</script>
+</body>
+</html>

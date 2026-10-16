@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Invoice</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .details, .cart {
+            width: 100%;
+            margin: 0 auto;
+        }
+        .cart th, .cart td {
+            border: 1px solid black;
+            padding: 10px;
+        }
+        .cart {
+            border-collapse: collapse;
+        }
+        .total {
+            text-align: right;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Order Invoice</h1>
+    </div>
+
+    <div class="details">
+        <h3>Delivery Information</h3>
+        <p><strong>Delivery Option:</strong> {{ delivery_option }}</p>
+        <p><strong>Payment Option:</strong> {{ payment_option }}</p>
+        <p><strong>Address:</strong> {{ address }}, {{ township }}, {{ city }}</p>
+        <p><strong>Phone:</strong> {{ phone }}</p>
+        <p><strong>Email:</strong> {{ email }}</p>
+    </div>
+
+    <div class="cart">
+        <h3>Cart Items</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for key, item in cart_items.items %}
+                <tr>
+                    <td>{{ item.name }}</td>
+                    <td>${{ item.price }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>${{ item.price * item.quantity }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="total">
+        <h3>Total: ${{ total_price }}</h3>
+    </div>
+</body>
+</html>

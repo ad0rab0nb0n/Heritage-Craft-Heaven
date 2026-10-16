@@ -1,0 +1,379 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'store/css/checkout.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script src="https://kit.fontawesome.com/ee81b3f1a3.js" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <div class="upper-nav">
+        <div class="hamburger" onclick="toggleSidebar()">
+                <span class="material-icons"><i class="fa-solid fa-bars"></i></span>
+            </div>
+            <div class="logo">Heritage Craft Heaven</div>
+            <div class="search-cart">
+                <select onchange="changeLanguage(this.value)">
+                    <option value="en">English</option>
+                    <option value="my">Burmese</option>
+                    <!-- Add more languages as needed -->
+                </select>
+                <form method="GET" action="{% url 'search'%}"><input type="text" placeholder="Search..." name="q">
+                    <button class="fas fa-search" type="submit"></button>
+
+                   </form>
+                <div class="shopping">
+                    <div class="cart">🛒</div>
+
+                </div>
+          </div>
+    </div>
+
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="toggleSidebar()">&times;</a>
+            <div class="categoryy" onclick="toggleSubcategory('cat1')">
+                Timeless Treasures Silver & Bronze
+                <span class="material-icons"><i class="fa-solid fa-angle-down"></i></span>
+            </div>
+            <div id="cat1" class="subcategory">
+                <a href="#" data-en="Buddhist Altr Accessories" data-my="နိဗ္ဗာန်ကုန်">Buddhist Altr Accessories</a>
+            <a href="#" data-en="Antique Crafts" data-my="ရှေးဟောင်း ပစ္စည်းများ">Antique Crafts</a>
+            <a href="#" data-en="Trinkets" data-my="လက်ဝတ်ရတနာများ">Trinkets</a>
+            <a href="#" data-en="Home Decos" data-my="အိမ်အလှဆင်ပစ္စည်းများ">Home Decos</a>
+            <a href="#" data-en="Traditional Designs" data-my="ရိုးရာဒီဇိုင်းများ">Traditional Designs</a>
+            <a href="#" data-en="Modern Designs" data-my="ခေတ်ပေါ်ဒီဇိုင်းများ">Modern Designs</a>
+            </div>
+            <div class="categoryy" onclick="toggleSubcategory('cat2')">
+                Old World Gleam
+                <span class="material-icons"><i class="fa-solid fa-angle-down"></i></span>
+            </div>
+            <div id="cat2" class="subcategory">
+                <a href="#" data-en="Buddhist Altr Accessories" data-my="နိဗ္ဗာန်ကုန်">Buddhist Altr Accessories</a>
+            <a href="#" data-en="Antique Crafts" data-my="ရှေးဟောင်း ပစ္စည်းများ">Antique Crafts</a>
+            <a href="#" data-en="Trinkets" data-my="လက်ဝတ်ရတနာများ">Trinkets</a>
+            <a href="#" data-en="Home Decos" data-my="အိမ်အလှဆင်ပစ္စည်းများ">Home Decos</a>
+            <a href="#" data-en="Traditional Designs" data-my="ရိုးရာဒီဇိုင်းများ">Traditional Designs</a>
+            <a href="#" data-en="Modern Designs" data-my="ခေတ်ပေါ်ဒီဇိုင်းများ">Modern Designs</a>
+            </div>
+            <div class="categoryy" onclick="toggleSubcategory('cat3')">
+                Burma Eternal Antiques
+                <span class="material-icons"><i class="fa-solid fa-angle-down"></i></span>
+            </div>
+            <div id="cat3" class="subcategory">
+                <a href="#" data-en="Buddhist Altr Accessories" data-my="နိဗ္ဗာန်ကုန်">Buddhist Altr Accessories</a>
+            <a href="#" data-en="Antique Crafts" data-my="ရှေးဟောင်း ပစ္စည်းများ">Antique Crafts</a>
+            <a href="#" data-en="Trinkets" data-my="လက်ဝတ်ရတနာများ">Trinkets</a>
+            <a href="#" data-en="Home Decos" data-my="အိမ်အလှဆင်ပစ္စည်းများ">Home Decos</a>
+            <a href="#" data-en="Traditional Designs" data-my="ရိုးရာဒီဇိုင်းများ">Traditional Designs</a>
+            <a href="#" data-en="Modern Designs" data-my="ခေတ်ပေါ်ဒီဇိုင်းများ">Modern Designs</a>
+            </div>
+            <div class="categoryy" onclick="toggleSubcategory('vlog')">
+                Articles
+                <span class="material-icons"><i class="fa-solid fa-angle-down"></i></span>
+            </div>
+            <div id="vlog" class="subcategory">
+                <a href="#">History of Burmese Silverware</a>
+                <a href="#">History of Burmese Bronze</a>
+                <a href="#">How to maintain silverware</a>
+                <a href="#">General knowledge</a>
+            </div>
+    </div>
+
+    <div class="lower-nav">
+        <a href="{% url 'home' %}" data-my="အဓိကစာမျက်နှာ" data-en="Home" >Home</a>
+        <a href="{% url 'aboutus' %}" data-my="အကြောင်းအရာ" data-en="About Us">About Us</a>
+            <div class="dropdown">
+                <a href="{% url 'store' %}" data-my="စျေးဝယ်ရန်" data-en="Shop">Shop<span class="material-icons edit"><i class="fa-solid fa-angle-down"></i></span></a>
+                <div class="dropdown-content">
+                    <label><input type="checkbox" name="category" value="category1"> Category 1</label>
+                    <label><input type="checkbox" name="category" value="category2"> Category 2</label>
+                    <label><input type="checkbox" name="category" value="category3"> Category 3</label>
+                </div>
+            </div>
+            <a href="{% url 'vlog' %} " data-my="ဆောင်းပါးများ" data-en="Vlog">Vlog</a>
+            <a href=" {% url 'login' %} " class="button"> Login</a>{% if user.is_authenticated %}
+        <a href="{% url 'profile' %}" class="button">{{ user.username }}</a>
+    {% else %}
+        <a href="{% url 'login' %}" class="button">Login</a>
+    {% endif %}
+    </div>
+
+    <!--checkout-->
+    <div class="container">
+       <form id="checkoutForm" method="POST" action="{% url 'generate_pdf' %}">
+        {% csrf_token %}
+        <input type="hidden" id="cart-data" name="cart_data">
+        <div class="row">
+            <div class="col1">
+                <h2 class="contact">Delivery</h2>
+                <div class="radio">
+                    <div class="deliver">
+                        <input type="radio" id="deliver" name="delivery_option" value="deliver" required>
+                        <label for="deliver">Deliver</label>
+                        <i class="fa-solid fa-truck icon"></i>
+                    </div>
+                    <div class="pickup">
+                        <input type="radio" id="pickup" name="delivery_option" value="pickup" required>
+                        <label for="pickup">Pickup in store</label>
+                        <i class="fa-solid fa-store icon"></i>
+                    </div>
+                </div>
+
+                <!-- Payment -->
+                <div class="payment">
+                    <h2>Payment</h2>
+                    <div class="box">
+                        <div class="cash">
+                            <input type="radio" id="cash" name="payment_option" value="COD" required>
+                            <label for="cash">Cash on Delivery (COD)</label>
+                        </div>
+                        <div class="pay">
+                            <input type="radio" id="paypal" name="payment_option" value="PayPal" required>
+                            <label for="paypal">PayPal</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Address -->
+                <div class="address">
+                    <input type="text" id="address" name="address" placeholder="Address" required><br>
+                    <div class="town">
+                        <input type="text" id="township" name="township" placeholder="Township" required>
+                        <input type="text" id="city" name="city" placeholder="City" required><br>
+                    </div>
+                    <input type="tel" id="phone" name="phone" placeholder="+95" required>
+                    <input type="email" id="email" name="email" placeholder="@gmail.com" required>
+                </div>
+
+                <!--button-->
+                <div class="button1">
+                    <button id="complete-order" type="submit">Complete Order</button>
+                </div>
+                <div>
+                    {% if messages %}
+
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Cart Items and Total -->
+            <div class="checkout-container">
+                <div id="cart-items" class="cart-items">
+                    <!-- Cart items will be loaded here -->
+                </div>
+                <div class="total">
+                    <h2>Total: <span id="total-price">0.00</span>Ks</h2>
+                </div>
+                <button id="clear-cart" type="button">Clear Cart</button>
+                <a id="goback"  href="{% url 'store' %}" style="text-decoration: none;">Go Back to Shop</a>
+            </div>
+        </div>
+       </form>
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById("mySidebar");
+            if (sidebar.style.left === "0px") {
+                sidebar.style.left = "-250px"; // Hide sidebar
+            } else {
+                sidebar.style.left = "0px"; // Show sidebar
+            }
+        }
+
+        function toggleSubcategory(id) {
+            const subcategory = document.getElementById(id);
+            if (subcategory.style.display === "block") {
+                subcategory.style.display = "none";
+            } else {
+                subcategory.style.display = "block";
+            }
+        }
+
+        // Choose radio button
+        document.querySelectorAll('.container .row .col1 .radio input[type="radio"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const deliverDiv = document.querySelector('.container .row .col1 .radio .deliver');
+                const pickupDiv = document.querySelector('.container .row .col1 .radio .pickup');
+
+                if (this.id === 'deliver') {
+                    deliverDiv.classList.add('selected');
+                    pickupDiv.classList.remove('selected');
+                } else if (this.id === 'pickup') {
+                    pickupDiv.classList.add('selected');
+                    deliverDiv.classList.remove('selected');
+                }
+            });
+        });
+
+        // Show location
+        document.addEventListener('DOMContentLoaded', function() {
+            const pickupRadio = document.getElementById('pickup');
+            const storeDiv = document.querySelector('.store');
+
+            function toggleStoreLocation() {
+                if (!storeDiv) return;
+                if (pickupRadio.checked) {
+                    storeDiv.style.display = 'block';
+                } else {
+                    storeDiv.style.display = 'none';
+                }
+            }
+
+            // Add event listeners to radio buttons
+            const radios = document.querySelectorAll('input[name="delivery_option"]');
+            radios.forEach(radio => {
+                radio.addEventListener('change', toggleStoreLocation);
+            });
+
+            // Initialize visibility based on the default checked radio
+            toggleStoreLocation();
+        });
+
+        // Payment
+        document.querySelectorAll('.container .row .col1 .payment .box input[type="radio"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const cashDiv = document.querySelector('.container .row .col1 .payment .box .cash');
+                const payDiv = document.querySelector('.container .row .col1 .payment .box .pay');
+
+                if (this.id === 'cash') {
+                    cashDiv.classList.add('selected');
+                    payDiv.classList.remove('selected');
+                } else if (this.id === 'ayepay') {
+                    payDiv.classList.add('selected');
+                    cashDiv.classList.remove('selected');
+                }
+            });
+        });
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const cartItemsContainer = document.getElementById('cart-items');
+    const totalPriceElement = document.getElementById('total-price');
+    const checkoutForm = document.getElementById('checkoutForm');
+    const cartHiddenInput = document.getElementById('cart-data');
+    const clearCartButton = document.getElementById('clear-cart');
+    const CART_KEY = 'cartItems';
+
+    function getCartItems() {
+        try {
+            const parsed = JSON.parse(localStorage.getItem(CART_KEY) || '{}');
+            if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) return {};
+            const normalized = {};
+            for (const [id, item] of Object.entries(parsed)) {
+                const price = Number.parseFloat(item.price);
+                const quantity = Number.parseInt(item.quantity, 10);
+                const name = String(item.name ?? item.productName ?? '').trim();
+                if (!name || !Number.isFinite(price) || price < 0 || !Number.isInteger(quantity) || quantity < 1) {
+                    console.warn('Skipping invalid cart item:', id, item);
+                    continue;
+                }
+                normalized[id] = {
+                    id: String(item.id ?? id),
+                    name,
+                    price,
+                    quantity,
+                    image: String(item.image ?? '')
+                };
+            }
+            return normalized;
+        } catch (error) {
+            console.error('Could not read cart:', error);
+            return {};
+        }
+    }
+
+    function renderCart() {
+        const cartItems = getCartItems();
+        cartItemsContainer.innerHTML = '';
+        let total = 0;
+        let itemCount = 0;
+
+        Object.entries(cartItems).forEach(([id, details]) => {
+            const itemTotal = details.price * details.quantity;
+            total += itemTotal;
+            itemCount += details.quantity;
+
+            const item = document.createElement('div');
+            item.className = 'cart-item';
+            item.style.display = 'flex';
+            item.style.alignItems = 'center';
+            item.style.gap = '12px';
+            item.style.marginBottom = '16px';
+
+            const image = document.createElement('img');
+            image.className = 'proimg';
+            image.alt = details.name;
+            image.src = details.image;
+            image.style.width = '70px';
+            image.style.height = '70px';
+            image.style.objectFit = 'contain';
+
+            const info = document.createElement('div');
+            info.className = 'gro';
+            const name = document.createElement('div');
+            name.className = 'letter';
+            name.textContent = details.name;
+            const unitPrice = document.createElement('div');
+            unitPrice.textContent = `Unit price: ${details.price.toFixed(2)} Ks`;
+            const quantity = document.createElement('div');
+            quantity.textContent = `Quantity: ${details.quantity}`;
+            const subtotal = document.createElement('div');
+            subtotal.textContent = `Subtotal: ${itemTotal.toFixed(2)} Ks`;
+            info.append(name, unitPrice, quantity, subtotal);
+            item.append(image, info);
+            cartItemsContainer.appendChild(item);
+        });
+
+        totalPriceElement.textContent = total.toFixed(2);
+        // Keep the hidden input current, not just at submit time.
+        cartHiddenInput.value = JSON.stringify(cartItems);
+        const badge = document.querySelector('.shopping span');
+        if (badge) badge.textContent = String(itemCount);
+        return cartItems;
+    }
+
+    renderCart();
+
+    checkoutForm.addEventListener('submit', function (event) {
+        const cartItems = renderCart();
+        if (Object.keys(cartItems).length === 0) {
+            event.preventDefault();
+            alert('Your cart is empty. Please add products first.');
+            return;
+        }
+        cartHiddenInput.value = JSON.stringify(cartItems);
+    });
+
+    clearCartButton.addEventListener('click', function () {
+        localStorage.removeItem(CART_KEY);
+        renderCart();
+    });
+});
+
+
+
+        function changeLanguage(language) {
+            var elements = document.querySelectorAll('[data-en], [data-my]');
+            elements.forEach(function (element) {
+                if (language === 'en') {
+                    element.innerText = element.getAttribute('data-en');
+                    element.classList.remove('my-font-size');
+                } else if (language === 'my') {
+                    element.innerText = element.getAttribute('data-my');
+                    element.classList.add('my-font-size');
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>

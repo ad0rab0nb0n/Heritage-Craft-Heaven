@@ -1,0 +1,165 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> <!-- Material Icons CSS -->
+    <link rel="stylesheet" href="{% static 'css/navbarstyle.css' %}">
+
+</head>
+<body>
+    <div class="upper-nav">
+        <div class="hamburger" onclick="toggleSidebar()">
+            <span class="material-icons">menu</span> <!-- Material Icon for hamburger menu -->
+        </div>
+        <div class="logo">Heritage Craft Heaven</div>
+        <div class="search-cart">
+            <select onchange="changeLanguage(this.value)">
+                <option value="en">English</option>
+                <option value="my">Burmese</option>
+            </select>
+            <input type="text" placeholder="Search...">
+            <div class="cart">🛒</div>
+        </div>
+    </div>
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="toggleSidebar()">&times;</a>
+        <div class="category" onclick="toggleSubcategory('cat1')" data-en="Shwe Sagaing Brass of Handicraft" data-my="ရွှေစစ်ကိုင်း">
+            Shwe Sagaing Brass of Handicraft
+            <span class="material-icons">expand_more</span>
+        </div>
+        <div id="cat1" class="subcategory">
+            <a href="#" data-en="Buddhist Altr Accessories" data-my="နိဗ္ဗာန်ကုန်">Buddhist Altr Accessories</a>
+            <a href="#" data-en="Antique Crafts" data-my="ရှေးဟောင်း ပစ္စည်းများ">Antique Crafts</a>
+            <a href="#" data-en="Trinkets" data-my="လက်ဝတ်ရတနာများ">Trinkets</a>
+            <a href="#" data-en="Home Decos" data-my="အိမ်အလှဆင်ပစ္စည်းများ">Home Decos</a>
+            <a href="#" data-en="Traditional Designs" data-my="ရိုးရာဒီဇိုင်းများ">Traditional Designs</a>
+            <a href="#" data-en="Modern Designs" data-my="ခေတ်ပေါ်ဒီဇိုင်းများ">Modern Designs</a>
+        </div>
+        <div class="category" onclick="toggleSubcategory('cat2')">
+            Old World Gleam
+            <span class="material-icons">expand_more</span>
+        </div>
+        <div id="cat2" class="subcategory">
+            <a href="#" data-en="Buddhist Altr Accessories" data-my="နိဗ္ဗာန်ကုန်">Buddhist Altr Accessories</a>
+            <a href="#" data-en="Antique Crafts" data-my="ရှေးဟောင်း ပစ္စည်းများ">Antique Crafts</a>
+            <a href="#" data-en="Trinkets" data-my="လက်ဝတ်ရတနာများ">Trinkets</a>
+            <a href="#" data-en="Home Decos" data-my="အိမ်အလှဆင်ပစ္စည်းများ">Home Decos</a>
+            <a href="#" data-en="Traditional Designs" data-my="ရိုးရာဒီဇိုင်းများ">Traditional Designs</a>
+            <a href="#" data-en="Modern Designs" data-my="ခေတ်ပေါ်ဒီဇိုင်းများ">Modern Designs</a>
+        </div>
+        <div class="category" onclick="toggleSubcategory('cat3')">
+            Burma Eternal Antiques
+            <span class="material-icons">expand_more</span>
+        </div>
+        <div id="cat3" class="subcategory">
+            <a href="#" data-en="Buddhist Altr Accessories" data-my="နိဗ္ဗာန်ကုန်">Buddhist Altr Accessories</a>
+            <a href="#" data-en="Antique Crafts" data-my="ရှေးဟောင်း ပစ္စည်းများ">Antique Crafts</a>
+            <a href="#" data-en="Trinkets" data-my="လက်ဝတ်ရတနာများ">Trinkets</a>
+            <a href="#" data-en="Home Decos" data-my="အိမ်အလှဆင်ပစ္စည်းများ">Home Decos</a>
+            <a href="#" data-en="Traditional Designs" data-my="ရိုးရာဒီဇိုင်းများ">Traditional Designs</a>
+            <a href="#" data-en="Modern Designs" data-my="ခေတ်ပေါ်ဒီဇိုင်းများ">Modern Designs</a>
+        </div>
+        <div class="category" onclick="toggleSubcategory('vlog')">
+            Articles
+            <span class="material-icons">expand_more</span>
+        </div>
+        <div id="vlog" class="subcategory">
+            <a href="#">History of Burmese Silverware</a>
+            <a href="#">History of Burmese Bronze</a>
+            <a href="#">How to maintain silverware</a>
+            <a href="#">General knowledge</a>
+        </div>
+        <!-- Add more categories and subcategories as needed -->
+    </div>
+    <div class="lower-nav">
+        <a href="{% url 'home' %}" >Home</a>
+        <a href="#">About Us</a>
+        <div class="dropdown">
+            <a href="{% url 'store' %}">Shop<span class="material-icons edit">expand_more</span></a>
+            <div class="dropdown-content">
+                <label><input type="checkbox" name="category" value="category1"> Distributor 1</label>
+                <label><input type="checkbox" name="category" value="category2"> Distributor 2</label>
+                <label><input type="checkbox" name="category" value="category3"> Distributor 3</label>
+            </div>
+        </div>
+        <a href="#">Vlog</a>
+        <a href=" {% url 'login' %} " class="button"> Login</a>
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById("mySidebar");
+            if (sidebar.style.left === "0px") {
+                sidebar.style.left = "-250px"; // Hide sidebar
+            } else {
+                sidebar.style.left = "0px"; // Show sidebar
+            }
+        }
+
+        function toggleSubcategory(id) {
+            const subcategory = document.getElementById(id);
+            if (subcategory.style.display === "block") {
+                subcategory.style.display = "none";
+            } else {
+                subcategory.style.display = "block";
+            }
+        }
+
+        function changeLanguage(language) {
+            var elements = document.querySelectorAll('[data-en], [data-my]');
+            elements.forEach(function (element) {
+                if (language === 'en') {
+                    element.innerText = element.getAttribute('data-en');
+                    element.classList.remove('my-font-size');
+                } else if (language === 'my') {
+                    element.innerText = element.getAttribute('data-my');
+                    element.classList.add('my-font-size');
+                }
+            });
+        }
+
+        let currentIndex = 0;
+        const slides = document.querySelectorAll('.banner .slide');
+        const totalSlides = slides.length;
+        const indicators = document.querySelectorAll('.indicator');
+
+        function showSlide(index) {
+            const slider = document.querySelector('.banner .slider');
+            slider.style.transform = `translateX(${-index * 100}%)`;
+            updateIndicators(index);
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % totalSlides;
+            showSlide(currentIndex);
+        }
+
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+            showSlide(currentIndex);
+        }
+
+        function goToSlide(index) {
+            currentIndex = index;
+            showSlide(currentIndex);
+        }
+
+        function updateIndicators(index) {
+            indicators.forEach((indicator, i) => {
+                indicator.classList.toggle('active', i === index);
+            });
+        }
+
+        setInterval(nextSlide, 3000);
+    </script>
+
+
+
+</body>
+</html>
